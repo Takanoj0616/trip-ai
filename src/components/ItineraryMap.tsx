@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ItineraryItem } from '../contexts/ItineraryContext';
 import { 
-  MapPin, 
   Navigation,
   Route,
   Compass,
@@ -358,11 +357,6 @@ const ItineraryMap: React.FC<ItineraryMapProps> = ({
     });
   };
 
-  const handleItemClick = (item: ItineraryItem) => {
-    if (onItemClick) {
-      onItemClick(item);
-    }
-  };
 
   if (loading) {
     return (

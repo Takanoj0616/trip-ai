@@ -16,12 +16,11 @@ export interface RouteOptimizationRequest {
 
 // メイン最適化関数
 export const optimizeRouteWithAI = async (
-  items: ItineraryItem[],
-  preferences?: RouteOptimizationRequest['preferences']
+  items: ItineraryItem[]
 ): Promise<OptimizedRoute> => {
   try {
     // シンプルなアルゴリズム最適化
-    return await optimizeWithSimpleAlgorithm(items, preferences);
+    return await optimizeWithSimpleAlgorithm(items);
     
   } catch (error) {
     console.error('Route optimization failed:', error);
@@ -32,8 +31,7 @@ export const optimizeRouteWithAI = async (
 
 // シンプルなアルゴリズム最適化
 const optimizeWithSimpleAlgorithm = async (
-  items: ItineraryItem[],
-  preferences?: RouteOptimizationRequest['preferences']
+  items: ItineraryItem[]
 ): Promise<OptimizedRoute> => {
   // 座標を持つアイテムのみを対象とした簡単な距離ベースの最適化
   const optimizedItems = [...items];

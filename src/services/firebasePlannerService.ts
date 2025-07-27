@@ -3,13 +3,11 @@ import {
   doc, 
   addDoc, 
   updateDoc, 
-  deleteDoc, 
   getDocs, 
   getDoc, 
   query, 
   where, 
-  orderBy, 
-  limit,
+  orderBy,
   Timestamp 
 } from 'firebase/firestore';
 import { getFirestoreInstance, isFirebaseAvailable } from '../config/firebase';
@@ -98,6 +96,10 @@ export class FirebasePlannerService {
     budget: { min: number; max: number }
   ): Promise<Planner[]> {
     try {
+      const db = getFirestoreInstance();
+      if (!db) {
+        throw new Error('Database not available');
+      }
       const plannersCollection = collection(db, 'planners');
       const q = query(
         plannersCollection,
@@ -128,6 +130,10 @@ export class FirebasePlannerService {
   // 特定のプランナーを取得
   static async getPlannerById(plannerId: string): Promise<Planner | null> {
     try {
+      const db = getFirestoreInstance();
+      if (!db) {
+        throw new Error('Database not available');
+      }
       const plannerDoc = doc(db, 'planners', plannerId);
       const docSnap = await getDoc(plannerDoc);
       
@@ -147,6 +153,10 @@ export class FirebasePlannerService {
   // 旅行リクエストを作成
   static async createTravelRequest(requestData: Omit<TravelRequest, 'id' | 'createdAt'>): Promise<string | null> {
     try {
+      const db = getFirestoreInstance();
+      if (!db) {
+        throw new Error('Database not available');
+      }
       const requestsCollection = collection(db, 'travelRequests');
       const docRef = await addDoc(requestsCollection, {
         ...requestData,
@@ -163,6 +173,10 @@ export class FirebasePlannerService {
   // メッセージを送信
   static async sendMessage(messageData: Omit<Message, 'id' | 'timestamp'>): Promise<string | null> {
     try {
+      const db = getFirestoreInstance();
+      if (!db) {
+        throw new Error('Database not available');
+      }
       const messagesCollection = collection(db, 'messages');
       const docRef = await addDoc(messagesCollection, {
         ...messageData,
@@ -179,6 +193,10 @@ export class FirebasePlannerService {
   // 旅行リクエストのメッセージを取得
   static async getMessagesByRequestId(requestId: string): Promise<Message[]> {
     try {
+      const db = getFirestoreInstance();
+      if (!db) {
+        throw new Error('Database not available');
+      }
       const messagesCollection = collection(db, 'messages');
       const q = query(
         messagesCollection,
@@ -201,6 +219,10 @@ export class FirebasePlannerService {
   // 旅行しおりを作成
   static async createItinerary(itineraryData: Omit<TravelItinerary, 'id' | 'createdAt' | 'updatedAt'>): Promise<string | null> {
     try {
+      const db = getFirestoreInstance();
+      if (!db) {
+        throw new Error('Database not available');
+      }
       const itinerariesCollection = collection(db, 'itineraries');
       const docRef = await addDoc(itinerariesCollection, {
         ...itineraryData,
@@ -218,6 +240,10 @@ export class FirebasePlannerService {
   // 旅行しおりを更新
   static async updateItinerary(itineraryId: string, updates: Partial<TravelItinerary>): Promise<boolean> {
     try {
+      const db = getFirestoreInstance();
+      if (!db) {
+        throw new Error('Database not available');
+      }
       const itineraryDoc = doc(db, 'itineraries', itineraryId);
       await updateDoc(itineraryDoc, {
         ...updates,
@@ -234,6 +260,10 @@ export class FirebasePlannerService {
   // プランナーの空き状況を更新
   static async updatePlannerAvailability(plannerId: string, availability: boolean): Promise<boolean> {
     try {
+      const db = getFirestoreInstance();
+      if (!db) {
+        throw new Error('Database not available');
+      }
       const plannerDoc = doc(db, 'planners', plannerId);
       await updateDoc(plannerDoc, {
         availability,
@@ -257,7 +287,11 @@ export class FirebasePlannerService {
       const newReviewCount = planner.reviewCount + 1;
       const updatedRating = totalRatings / newReviewCount;
 
-      const plannerDoc = doc(db, 'planners', plannerId);
+      const db2 = getFirestoreInstance();
+      if (!db2) {
+        throw new Error('Database not available');
+      }
+      const plannerDoc = doc(db2, 'planners', plannerId);
       await updateDoc(plannerDoc, {
         rating: Math.round(updatedRating * 10) / 10,
         reviewCount: newReviewCount,
@@ -277,7 +311,11 @@ export class FirebasePlannerService {
       const planner = await this.getPlannerById(plannerId);
       if (!planner) return false;
 
-      const plannerDoc = doc(db, 'planners', plannerId);
+      const db2 = getFirestoreInstance();
+      if (!db2) {
+        throw new Error('Database not available');
+      }
+      const plannerDoc = doc(db2, 'planners', plannerId);
       await updateDoc(plannerDoc, {
         completedTrips: planner.completedTrips + 1,
         updatedAt: Timestamp.now()

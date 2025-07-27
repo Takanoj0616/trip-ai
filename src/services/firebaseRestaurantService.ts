@@ -1,4 +1,4 @@
-import { db } from '../config/firebase';
+import { getFirestoreInstance } from '../config/firebase';
 import { 
   collection, 
   doc, 
@@ -88,7 +88,11 @@ export const addRestaurant = async (restaurant: Omit<Restaurant, 'id' | 'created
       updatedAt: Timestamp.now()
     };
     
-    const docRef = await addDoc(collection(db, RESTAURANTS_COLLECTION), restaurantData);
+    const database = getFirestoreInstance();
+    if (!database) {
+      throw new Error('Firebase not available');
+    }
+    const docRef = await addDoc(collection(database, RESTAURANTS_COLLECTION), restaurantData);
     console.log('Restaurant added with ID: ', docRef.id);
     return docRef.id;
   } catch (error) {
@@ -100,7 +104,11 @@ export const addRestaurant = async (restaurant: Omit<Restaurant, 'id' | 'created
 // 全レストランデータを取得
 export const getAllRestaurants = async (): Promise<Restaurant[]> => {
   try {
-    const querySnapshot = await getDocs(collection(db, RESTAURANTS_COLLECTION));
+    const database = getFirestoreInstance();
+    if (!database) {
+      throw new Error('Firebase not available');
+    }
+    const querySnapshot = await getDocs(collection(database, RESTAURANTS_COLLECTION));
     const restaurants: Restaurant[] = [];
     
     querySnapshot.forEach((doc) => {
@@ -120,8 +128,12 @@ export const getAllRestaurants = async (): Promise<Restaurant[]> => {
 // 特定のカテゴリのレストランを取得
 export const getRestaurantsByCategory = async (category: string): Promise<Restaurant[]> => {
   try {
+    const database = getFirestoreInstance();
+    if (!database) {
+      throw new Error('Firebase not available');
+    }
     const q = query(
-      collection(db, RESTAURANTS_COLLECTION),
+      collection(database, RESTAURANTS_COLLECTION),
       where('categories', 'array-contains', category),
       orderBy('rating', 'desc')
     );
@@ -146,7 +158,11 @@ export const getRestaurantsByCategory = async (category: string): Promise<Restau
 // レストランデータを更新
 export const updateRestaurant = async (id: string, updates: Partial<Restaurant>): Promise<void> => {
   try {
-    const restaurantRef = doc(db, RESTAURANTS_COLLECTION, id);
+    const database = getFirestoreInstance();
+    if (!database) {
+      throw new Error('Firebase not available');
+    }
+    const restaurantRef = doc(database, RESTAURANTS_COLLECTION, id);
     await updateDoc(restaurantRef, {
       ...updates,
       updatedAt: Timestamp.now()
@@ -161,7 +177,11 @@ export const updateRestaurant = async (id: string, updates: Partial<Restaurant>)
 // レストランデータを削除
 export const deleteRestaurant = async (id: string): Promise<void> => {
   try {
-    await deleteDoc(doc(db, RESTAURANTS_COLLECTION, id));
+    const database = getFirestoreInstance();
+    if (!database) {
+      throw new Error('Firebase not available');
+    }
+    await deleteDoc(doc(database, RESTAURANTS_COLLECTION, id));
     console.log('Restaurant deleted successfully');
   } catch (error) {
     console.error('Error deleting restaurant: ', error);

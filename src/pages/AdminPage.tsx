@@ -5,7 +5,6 @@ import {
   CheckCircle, 
   AlertCircle, 
   Loader2,
-  Download,
   Trash2,
   RefreshCw
 } from 'lucide-react';

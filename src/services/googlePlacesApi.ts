@@ -1,7 +1,7 @@
 // Mock Places API Service
 // Google Places API の代わりにモックデータを使用
 
-import type { GooglePlacesResponse, GooglePlace } from '../types/api';
+import type { GooglePlace } from '../types/api';
 
 export const searchTokyoTouristSpots = async (): Promise<GooglePlace[]> => {
   // モックデータを返す
@@ -118,8 +118,6 @@ const getMockPlaces = (): GooglePlace[] => {
 
 // 東京タワーのモック情報
 const getMockTokyoTowerInfo = () => {
-  const now = new Date();
-  
   return {
     name: '東京タワー',
     rating: 4.2,
@@ -176,4 +174,11 @@ const getMockTokyoTowerInfo = () => {
     website: 'https://www.tokyotower.co.jp/',
     phoneNumber: '03-3433-5111'
   };
+};
+
+// Get photo URL for a place
+export const getPlacePhoto = (photoReference: string, maxWidth: number = 400): string => {
+  // In a real implementation, this would call Google Places Photo API
+  // For now, return a placeholder or the photo reference as URL
+  return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${maxWidth}&photoreference=${photoReference}&key=YOUR_API_KEY`;
 };

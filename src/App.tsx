@@ -34,7 +34,7 @@ const App: React.FC = () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.style.animationDelay = '0s';
+          (entry.target as HTMLElement).style.animationDelay = '0s';
           entry.target.classList.add('animate-slide-up');
         }
       });
@@ -46,9 +46,10 @@ const App: React.FC = () => {
 
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+      anchor.addEventListener('click', function (this: HTMLAnchorElement, e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = this.getAttribute('href');
+        const target = href ? document.querySelector(href) : null;
         if (target) {
           target.scrollIntoView({
             behavior: 'smooth',

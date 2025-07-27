@@ -45,7 +45,7 @@ export const getTokyoTowerTweets = async (): Promise<Tweet[]> => {
       const data = await response.json();
       
       // APIレスポンスを変換
-      return data.data?.map((tweet: any, index: number) => {
+      return data.data?.map((tweet: any) => {
         const user = data.includes?.users?.find((u: any) => u.id === tweet.author_id);
         return {
           id: tweet.id,

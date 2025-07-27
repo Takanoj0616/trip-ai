@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MapPin, Clock, Star, Users, ArrowRight, ArrowLeft, Filter } from 'lucide-react';
+import { MapPin, Clock, Star, ArrowRight, ArrowLeft, Filter } from 'lucide-react';
 import { TOURIST_SPOTS, PREFECTURES } from '../data/touristSpots';
 import { TouristSpot } from '../types/touristSpots';
 

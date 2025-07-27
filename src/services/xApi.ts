@@ -4,6 +4,8 @@ import type { TweetResponse } from '../types/api';
 const X_BEARER_TOKEN = import.meta.env.VITE_X_BEARER_TOKEN;
 const X_API_BASE_URL = 'https://api.twitter.com/2';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// @ts-ignore
 const xApiClient = axios.create({
   baseURL: X_API_BASE_URL,
   headers: {
@@ -12,7 +14,7 @@ const xApiClient = axios.create({
   },
 });
 
-export const searchTweets = async (query: string, maxResults: number = 50): Promise<TweetResponse> => {
+export const searchTweets = async (query: string): Promise<TweetResponse> => {
   try {
     // Note: Twitter API requires server-side implementation due to CORS restrictions
     // For now, we'll use mock data and suggest implementing a backend proxy
@@ -40,10 +42,10 @@ export const getTokyoTouristTweets = async (): Promise<TweetResponse> => {
   ];
   
   const randomQuery = queries[Math.floor(Math.random() * queries.length)];
-  return await searchTweets(randomQuery, 50);
+  return await searchTweets(randomQuery);
 };
 
-export const getSpotTweets = async (spotKeywords: string[], hashtags: string[]): Promise<TweetResponse> => {
+export const getSpotTweets = async (spotKeywords: string[]): Promise<TweetResponse> => {
   try {
     // Note: Twitter API requires server-side implementation due to CORS restrictions
     // For now, we'll use mock data and suggest implementing a backend proxy

@@ -12,17 +12,12 @@ import {
   ArrowRight,
   Info,
   AlertCircle,
-  Star,
-  Phone,
-  Globe,
   DollarSign,
   Calendar,
   Users,
-  Camera,
   ChevronDown,
   ChevronUp,
-  Route,
-  Compass
+  Route
 } from 'lucide-react';
 
 interface DetailedRouteGuideProps {

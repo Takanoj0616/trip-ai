@@ -8,12 +8,8 @@ import {
   Phone, 
   Globe, 
   Train, 
-  Car, 
   ArrowLeft,
   Heart,
-  Share2,
-  Download,
-  Notebook,
   CheckCircle
 } from 'lucide-react';
 import Navigation from './Navigation';
@@ -1663,11 +1659,9 @@ export const TravelGuide: React.FC = () => {
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button className="inline-flex items-center bg-gradient-to-r from-neon-blue to-neon-green px-6 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-neon-blue/30 transition-all duration-300 transform hover:scale-105">
-                  <Download className="w-5 h-5 mr-2" />
                   ガイドをダウンロード
                 </button>
                 <button className="inline-flex items-center bg-gradient-to-r from-neon-pink to-neon-purple px-6 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-neon-pink/30 transition-all duration-300 transform hover:scale-105">
-                  <Share2 className="w-5 h-5 mr-2" />
                   シェア
                 </button>
               </div>
@@ -1715,7 +1709,7 @@ export const TravelGuide: React.FC = () => {
                           {isInItinerary(rec.id) ? (
                             <CheckCircle className="w-6 h-6" />
                           ) : (
-                            <Notebook className="w-6 h-6" />
+                            <Heart className="w-6 h-6" />
                           )}
                         </button>
                       </div>

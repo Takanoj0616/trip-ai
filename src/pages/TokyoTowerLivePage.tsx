@@ -5,9 +5,6 @@ import {
   Star, 
   RefreshCw, 
   MessageCircle, 
-  Calendar,
-  Users,
-  Camera,
   ArrowLeft,
   ExternalLink
 } from 'lucide-react';

@@ -4,30 +4,18 @@ import {
   MapPin, 
   Clock, 
   Star, 
-  Phone, 
-  Globe, 
   Train,
   ArrowLeft,
   Trash2,
   Bot,
   Loader2,
-  Route,
-  Calculator,
   Lightbulb,
   Navigation2,
   CheckCircle2,
   AlertCircle,
   Move3D,
   Map,
-  List,
-  Calendar,
-  Share2,
-  Download,
-  Print,
-  Camera,
-  MessageCircle,
-  Bookmark,
-  Target
+  List
 } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';

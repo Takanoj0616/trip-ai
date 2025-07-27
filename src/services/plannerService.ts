@@ -1,4 +1,4 @@
-import { Planner, TravelRequest, Message, TravelItinerary } from '../types/planner';
+import { Planner, TravelRequest, Message } from '../types/planner';
 import { FirebasePlannerService } from './firebasePlannerService';
 import { plannersArray } from '../data/firebasePlanners';
 

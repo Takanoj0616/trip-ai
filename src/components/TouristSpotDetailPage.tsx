@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import { MapPin, Clock, Star, Users, ArrowLeft, ArrowRight, Train, DollarSign } from 'lucide-react';
+import { useParams, Link } from 'react-router-dom';
+import { Clock, Star, Users, ArrowLeft, ArrowRight, Train, DollarSign } from 'lucide-react';
 import Navigation from './Navigation';
 import Footer from './Footer';
 import TweetCard from './TweetCard';
@@ -12,7 +12,6 @@ import type { Tweet, TikTokVideo } from '../types/api';
 
 const TouristSpotDetailPage: React.FC = () => {
   const { spotId } = useParams<{ spotId: string }>();
-  const navigate = useNavigate();
   const [tweets, setTweets] = useState<Tweet[]>([]);
   const [tiktokVideos, setTiktokVideos] = useState<TikTokVideo[]>([]);
   const [loading, setLoading] = useState(true);
@@ -35,7 +34,7 @@ const TouristSpotDetailPage: React.FC = () => {
     setLoading(true);
     try {
       const [tweetsResponse, tiktokResponse] = await Promise.all([
-        getSpotTweets(spotData.keywords, spotData.hashtags),
+        getSpotTweets(spotData.keywords),
         getSpotTikTokVideos(spotData.keywords, spotData.hashtags),
       ]);
       

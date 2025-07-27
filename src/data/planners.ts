@@ -37,7 +37,8 @@ export const plannersForFirebase = {
       }
     ]
   },
-  {
+  // ドキュメントID: planner-2
+  'planner-2': {
     id: 'planner-2',
     name: '佐藤 健太郎',
     avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
@@ -70,7 +71,8 @@ export const plannersForFirebase = {
       }
     ]
   },
-  {
+  // ドキュメントID: planner-3
+  'planner-3': {
     id: 'planner-3',
     name: '山田 あかり',
     avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
@@ -103,7 +105,8 @@ export const plannersForFirebase = {
       }
     ]
   },
-  {
+  // ドキュメントID: planner-4
+  'planner-4': {
     id: 'planner-4',
     name: 'Emily Thompson',
     avatar: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face',
@@ -136,7 +139,8 @@ export const plannersForFirebase = {
       }
     ]
   },
-  {
+  // ドキュメントID: planner-5
+  'planner-5': {
     id: 'planner-5',
     name: '鈴木 大輔',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
@@ -169,7 +173,10 @@ export const plannersForFirebase = {
       }
     ]
   }
-];
+};
+
+// フロントエンド用のプランナーデータ（配列形式）
+export const planners: Planner[] = Object.values(plannersForFirebase);
 
 export const getMatchingPlanners = (
   areas: string[],

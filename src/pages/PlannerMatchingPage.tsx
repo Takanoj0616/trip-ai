@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import PlannerMatchingForm from '../components/PlannerMatchingForm';
 import PlannerList from '../components/PlannerList';
 import MessagingSystem from '../components/MessagingSystem';
@@ -14,7 +13,6 @@ import Footer from '../components/Footer';
 type PageState = 'form' | 'matching' | 'messaging' | 'itinerary';
 
 const PlannerMatchingPage: React.FC = () => {
-  const navigate = useNavigate();
   const [currentState, setCurrentState] = useState<PageState>('form');
   const [matchingPlanners, setMatchingPlanners] = useState<Planner[]>([]);
   const [selectedPlanner, setSelectedPlanner] = useState<Planner | null>(null);
@@ -311,7 +309,7 @@ const PlannerMatchingPage: React.FC = () => {
     setCurrentState('messaging');
   };
 
-  const handleMessageFromItinerary = (message: string) => {
+  const handleMessageFromItinerary = () => {
     setCurrentState('messaging');
   };
 

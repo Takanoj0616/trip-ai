@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Paperclip, Image, Calendar, MapPin, Star, User } from 'lucide-react';
+import { Send, Paperclip, Image, MapPin, Star, User } from 'lucide-react';
 import { Planner, Message } from '../types/planner';
 
 interface MessagingSystemProps {
